@@ -10,32 +10,31 @@ public class UserController {
 
     private UserService service;
 
-    public UserController(UserService service) {
+    public UserController(UserService service){
         this.service = service;
     }
 
-    @GetMapping
-    public List<User> getAllUser() {
-        return service.getAllUser();
-    }
-
-    @GetMapping("/{id}")
-    public User getUserById(@PathVariable Integer id) {
-        return service.getUserById(id);
-    }
-
     @PostMapping
-    public User createUser(@RequestBody User user) {
-        return service.createUser(user);
+    public UserEntity salvarUsuario(@RequestBody UserEntity user){
+        service.salvarUsuario(user);
+        return user;
     }
 
-    @PutMapping("/{id}")
-    public User updateUser(@PathVariable Integer id, @RequestBody User user) {
-        return service.updateUser(id, user);
+    @GetMapping
+    public Iterable<UserDTO> getAllUsers(){
+        return service.getAll();
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Integer id) {
-        service.deleteUser(id);
+    @GetMapping
+    @RequestMapping("/one")
+    public UserDTO getOneUser(){
+        return service.getFirst();
     }
+
+    @GetMapping
+    @RequestMapping("/teste")
+    public String getAllUsersDois(){
+        return "Sucesso";
+    }
+
 }

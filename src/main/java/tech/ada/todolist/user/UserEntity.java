@@ -4,21 +4,21 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_user")
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
+    private String nome;
     private String email;
+    private Boolean chato;
 
-    public User() {
+    public Boolean getChato() {
+        return chato;
     }
 
-    public User(Integer id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
+    public void setChato(Boolean chato) {
+        this.chato = chato;
     }
 
     public Integer getId() {
@@ -29,12 +29,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEmail() {

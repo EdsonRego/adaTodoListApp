@@ -1,6 +1,7 @@
 package tech.ada.todolist.todo;
 
 import jakarta.persistence.*;
+import tech.ada.todolist.user.UserEntity;
 
 import java.time.LocalDateTime;
 
@@ -16,14 +17,16 @@ public class Tarefa {
     private LocalDateTime prazo;
     private Boolean concluida;
 
-    public Tarefa() {
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private UserEntity user;
+
+    public UserEntity getUser() {
+        return user;
     }
 
-    public Tarefa(String nome, String descricao, LocalDateTime prazo, Boolean concluida) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.prazo = prazo;
-        this.concluida = concluida;
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
     public Integer getId() {
