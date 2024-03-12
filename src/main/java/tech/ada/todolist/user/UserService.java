@@ -2,6 +2,7 @@ package tech.ada.todolist.user;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -13,15 +14,28 @@ public class UserService {
         this.repository = repository;
     }
 
-    public void salvarUsuario(UserEntity user){
-        repository.save(user);
+    public void salvarUsuario(UserRequest usuario){
+        repository.save(new UserEntity(usuario));
+    }
+
+    public void salvarUsuarioDTO(UserDTO usuario){
+        repository.save(new UserEntity(usuario));
     }
 
     public Iterable<UserDTO> getAll(){
-//        repository.findAll().forEach(entidade -> {
-//
-//        });
-        return null;
+//        Iterable<UsuarioDTO> retorno = metodoQueConverteEntidadeParaDTO();
+        return metodoQueConverteEntidadeParaDTO();
+    }
+
+    private List<UserDTO> metodoQueConverteEntidadeParaDTO() {
+
+        List<UserDTO> listaDeDTOs = new ArrayList<>();
+
+        repository.findAll().forEach(item -> {
+            listaDeDTOs.add(new UserDTO(item));
+        });
+
+        return listaDeDTOs;
     }
 
     public UserDTO getFirst() {

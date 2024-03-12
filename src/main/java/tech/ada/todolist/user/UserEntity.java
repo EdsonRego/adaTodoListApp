@@ -11,14 +11,20 @@ public class UserEntity {
     private Integer id;
     private String nome;
     private String email;
-    private Boolean chato;
+    private String senha;
 
-    public Boolean getChato() {
-        return chato;
+    public UserEntity() {}
+
+    public UserEntity(UserRequest request) {
+        this.nome = request.getNome();
+        this.email = request.getEmail();
+        this.senha = request.getSenha();
     }
 
-    public void setChato(Boolean chato) {
-        this.chato = chato;
+    public UserEntity(UserDTO request) {
+        this.nome = request.getNome();
+        this.email = request.getEmail();
+        this.senha = request.getSenha();
     }
 
     public Integer getId() {
@@ -43,5 +49,13 @@ public class UserEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }
